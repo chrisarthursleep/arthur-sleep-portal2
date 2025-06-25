@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { TrendingUp, AlertCircle, Calendar, Briefcase, Coffee, Moon, Plane } from 'lucide-react'
 import ShoeCard from '@/components/features/ShoeCard'
-import WardrobeGapCard from '../../features/WardrobeGapCard'
+import WardrobeGapCard from '../features/WardrobeGapCard'
 import Card from '@/components/ui/Card'
 import { ModalType } from '@/types/navigation'
 import { customerData } from '@/data/customer-data'
