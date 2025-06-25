@@ -18,63 +18,6 @@ const generateAvailableSlots = (date: string, serviceType: string) => {
       duration: serviceType === 'consultation' ? 45 : 30
     }))
 }
-
-export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url)
-    const type = searchParams.get('type')
-    const date = searchParams.get('date')
-
-    if (!type || !date) {
-      return NextResponse.json(
-        { error: 'Service type and date required' },
-        { status: 400 }
-      )
-    }
-
-    const validTypes = ['scan', 'consultation', 'fitting']
-    if (!validTypes.includes(type)) {
-      return NextResponse.json(
-        { error: 'Invalid service type' },
-        { status: 400 }
-      )
-    }
-
-    const slots = generateAvailableSlots(date, type)
-
-    const serviceDetails = {
-      scan: {
-        duration: '30 minutes',
-        location: 'Mount Street Atelier',
-        description: '3D foot scanning for perfect fit'
-      },
-      consultation: {
-        duration: '45 minutes',
-        location: 'Mount Street Atelier',
-        description: 'Style consultation with your specialist'
-      },
-      fitting: {
-        duration: '30 minutes',
-        location: 'Mount Street Atelier',
-        description: 'Try on and adjust your new shoes'
-      }
-    }
-
-    return NextResponse.json({
-      date,
-      type,
-      service: serviceDetails[type as keyof typeof serviceDetails],
-      slots,
-      nextAvailable: slots[0]?.time || null
-    })
-  } catch (error) {
-    console.error('Availability check error:', error)
-    return NextResponse.json(
-      { error: 'Failed to check availability' },
-      { status: 500 }
-    )
-  }
-}
 // GET /api/appointments/availability - Check available slots
 export async function GET(request: NextRequest) {
   try {
