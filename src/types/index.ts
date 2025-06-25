@@ -4,6 +4,6 @@ export * from './wardrobe'
 export * from './navigation'
 export * from './weather'
 
-// Selective exports to avoid name clash
-export { TeamMember, MessageAttachment as TeamMessageAttachment } from './team'
-export { Message, MessageStatus, MessageAttachment as ChatMessageAttachment } from './message'
+// Use `export type` for type-only exports under isolatedModules
+export type { TeamMember, MessageAttachment as TeamMessageAttachment } from './team'
+export type { Message, MessageStatus, MessageAttachment as ChatMessageAttachment } from './message'
