@@ -337,6 +337,3 @@ function getPreparationInstructions(type: string): string[] {
 
   return instructions[type as keyof typeof instructions] || []
 }
-
-// Export availability endpoint with custom name
-export { GET_AVAILABILITY as getAvailability }
